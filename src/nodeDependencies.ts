@@ -195,7 +195,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 				//fs.writeFileSync('/Users/RG/Documents/comp/whiteout2/tree-view-sample-x86/x86/index.html', body);
 				// FUCK: the entire parse fails if we do not have the /arm directory in our
 				// extension. Let's do a check here too.
-		        if (!fs.existsSync(myExtDir + `/arm`)) {
+				if (!fs.existsSync(myExtDir + `/arm`)) {
 					fs.mkdirSync(myExtDir + `/arm`);
 				}
 				fs.writeFileSync(myExtDir + '/arm/index.html', body);
