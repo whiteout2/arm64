@@ -1,14 +1,13 @@
-# x86 Instruction Reference
+# ARM Instruction Reference
 
-- shows x86 instructions in side bar
-- custom activity bar icon [x86] and keybinding (shift+cmd+i)
+- shows ARM instructions in side bar
+- custom activity bar icon [arm] and keybinding (shift+cmd+i)
 - based on tree-view-sample
-- parses and references https://www.felixcloutier.com/x86
-- test: new version
+- parses and references https://www.arm.com/
 <br>
 
 
-![Image of x86 extension](https://raw.githubusercontent.com/whiteout2/x86/master/media/x86_screenshot2.png)
+![Image of arm extension](https://raw.githubusercontent.com/whiteout2/arm/master/media/arm_screenshot2.png)
 
 
 <!-- # Custom tree view samples

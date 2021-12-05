@@ -1,8 +1,8 @@
 {
-    "name": "x86",
-    "displayName": "x86 Instruction Reference",
-    "description": "Intel x86 instruction reference in a VS Code custom Activity Bar view",
-    "version": "0.4.1",
+    "name": "arm",
+    "displayName": "ARM Instruction Reference",
+    "description": "ARM instruction reference in a VS Code custom Activity Bar view",
+    "version": "0.0.1",
     "publisher": "whiteout2",
     "engines": {
         "vscode": "^1.32.0"
@@ -24,9 +24,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/whiteout2/x86.git"
+        "url": "https://github.com/whiteout2/arm.git"
     },
-    "icon": "media/x86_big_white.png",
+    "icon": "media/arm_big_white.png",
     "main": "./out/src/extension",
     "contributes": {
         "keybindings": [
@@ -40,8 +40,8 @@
             "activitybar": [
                 {
                     "id": "package-explorer",
-                    "title": "x86 Instructions",
-                    "icon": "media/x86_white128.png"
+                    "title": "ARM Instructions",
+                    "icon": "media/dep.png"
                 }
             ]
         },
@@ -49,23 +49,23 @@
             "package-explorer": [
                 {
                     "id": "nodeDependencies1",
-                    "name": "Core Instructions"
+                    "name": "A Instructions"
                 },
                 {
                     "id": "nodeDependencies2",
-                    "name": "SGX Instructions"
+                    "name": "B Instructions"
                 },
                 {
                     "id": "nodeDependencies3",
-                    "name": "SMX Instructions"
+                    "name": "C Instructions"
                 },
                 {
                     "id": "nodeDependencies4",
-                    "name": "VMX Instructions"
+                    "name": "D Instructions"
                 },
                 {
                     "id": "nodeDependencies5",
-                    "name": "Xeon Phi™ Instructions"
+                    "name": "E Instructions"
                 }
             ],
             "explorer": [
