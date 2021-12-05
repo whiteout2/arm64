@@ -87,7 +87,7 @@ function viewInstruction(moduleName, moduleLink)
 	// - Check if file is already in /x86 cache to skip the download (not really necessary)
 	// - Get rid of hardcoded /Users/RG/Documents/comp/whiteout2/tree-view-sample-x86/
 	
-	var myExtDir = vscode.extensions.getExtension ("whiteout2.x86").extensionPath;
+	var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
 					
 	var request = require('request');
 	request.get(`https://www.felixcloutier.com/x86/${moduleLink}`, function (error, response, body) {
@@ -111,10 +111,10 @@ function viewInstruction(moduleName, moduleLink)
 			// TODO: Extra check that /x86 dir exists, if not create it. But we should already
 			// have created it when extension installs
 			// DONE:
-			if (!fs.existsSync(myExtDir + `/x86`)) {
-				fs.mkdirSync(myExtDir + `/x86`);
+			if (!fs.existsSync(myExtDir + `/arm`)) {
+				fs.mkdirSync(myExtDir + `/arm`);
 			}
-			fs.writeFileSync(myExtDir + `/x86/${cleanFileName}`, body);
+			fs.writeFileSync(myExtDir + `/arm/${cleanFileName}`, body);
 
 			// TODO: previewHtml is deprecated, use Webview API
 			//vscode.commands.executeCommand('vscode.previewHtml', vscode.Uri.parse(`file://` + myExtDir + `/x86/${moduleLink}`), 1, `${moduleName}`);

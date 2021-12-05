@@ -191,9 +191,14 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 
 				// TEST: reading html and writing to file for use in previewHtml
 				// OK works!
-				var myExtDir = vscode.extensions.getExtension ("whiteout2.x86").extensionPath;
+				var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
 				//fs.writeFileSync('/Users/RG/Documents/comp/whiteout2/tree-view-sample-x86/x86/index.html', body);
-				fs.writeFileSync(myExtDir + '/x86/index.html', body);
+				// FUCK: the entire parse fails if we do not have the /arm directory in our
+				// extension. Let's do a check here too.
+		        if (!fs.existsSync(myExtDir + `/arm`)) {
+					fs.mkdirSync(myExtDir + `/arm`);
+				}
+				fs.writeFileSync(myExtDir + '/arm/index.html', body);
 
 
 
