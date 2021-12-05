@@ -1,6 +1,6 @@
 # ARM Instruction Reference
 
-- shows ARM instructions in side bar
+- shows QQQARM instructions in side bar
 - custom activity bar icon [arm] and keybinding (shift+cmd+i)
 - based on tree-view-sample
 - parses and references https://www.arm.com/
