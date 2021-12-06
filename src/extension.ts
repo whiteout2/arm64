@@ -123,11 +123,53 @@ function viewInstruction(moduleName, moduleLink)
 				'catCoding',
 				`${moduleName}`,
 				vscode.ViewColumn.One,
-				{}
+				{
+					// Only allow the webview to access resources in our extension's media directory
+					localResourceRoots: [vscode.Uri.file(myExtDir + '/arm/xhtml_a64')]
+				}
 			);
 
 			// And set its HTML content
 			panel.webview.html = body;
+			
+			// TEST: show html file in webview
+			// TODO: make css work. Not easy. See: https://stackoverflow.com/questions/56182144/vscode-extension-webview-external-html-and-css
+			// Since webview adapts the contents for the color themes better not use css but just change
+			// some html before showing:
+			// <table class="regdiagram" => <table class="regdiagram" border=1 cellspacing=0
+			// <p class="pseudocode" => <pre class="pseudocode"
+			// <a id="execute"/> => 
+			// And also hack off page headers and footers
+			// NOTE: inline css works
+			var body3 = '';
+			fs.readFile(myExtDir + '/arm/xhtml_a64/adc.html', 'utf8', function(err, data) {
+				if (err) throw err;
+				// DAMN: cannot use a variable like this: if we leave the scope body3 will be empty
+				// It is the callback shit again.
+				body3 = data;
+				
+				// HACK:
+				body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" border=1 cellspacing=0>');
+				body3 = body3.replace(/<p class="pseudocode">/g, '<p class="pseudocode" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
+				body3 = body3.replace(/<p class="asm-code">/g, '<p class="asm-code" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
+				body3 = body3.replace('<a id="execute"/>', '');
+				// cut header
+				body3 = body3.replace('<body>', '<body><!--');
+				body3 = body3.replace('</table><hr/>', '</table><hr/>-->');
+				// cut footer
+				body3 = body3.replace('<hr/><table style="margin: 0 auto;">', '<!--<hr/><table style="margin: 0 auto;">');
+				body3 = body3.replace('</body>', '--></body>');
+				
+				//console.log(body3);
+				panel.webview.html = body3;
+			});
+
+			// HACK:
+			// NONO: do in anonymous function, body3 will be empty here!!!
+			//body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" border=1 cellspacing=0>');
+			//console.log(body3);
+			//panel.webview.html = body3;
+			
 
 		}
 	}); // End: request.get()

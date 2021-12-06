@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title>A64</title><link rel="stylesheet" type="text/css" href="insn.css"/></head>
+  <body><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h1 class="alphindextitle">A64 -- SME Instructions (alphabetic order)</h1>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="addha_za_pp_z.html">ADDHA</a>:
+        Add horizontally vector elements to ZA tile.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="addva_za_pp_z.html">ADDVA</a>:
+        Add vertically vector elements to ZA tile.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="bfmopa_za32_pp_zz.html">BFMOPA</a>:
+        BFloat16 sum of outer products and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="bfmops_za32_pp_zz.html">BFMOPS</a>:
+        BFloat16 sum of outer products and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmopa_za_pp_zz.html">FMOPA (non-widening)</a>:
+        Floating-point outer product and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmopa_za32_pp_zz.html">FMOPA (widening)</a>:
+        Half-precision floating-point sum of outer products and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmops_za_pp_zz.html">FMOPS (non-widening)</a>:
+        Floating-point outer product and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="fmops_za32_pp_zz.html">FMOPS (widening)</a>:
+        Half-precision floating-point sum of outer products and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ld1b_za_p_rrr.html">LD1B</a>:
+        Contiguous load of bytes to 8-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ld1d_za_p_rrr.html">LD1D</a>:
+        Contiguous load of doublewords to 64-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ld1h_za_p_rrr.html">LD1H</a>:
+        Contiguous load of halfwords to 16-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ld1q_za_p_rrr.html">LD1Q</a>:
+        Contiguous load of quadwords to 128-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ld1w_za_p_rrr.html">LD1W</a>:
+        Contiguous load of words to 32-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="ldr_za_ri.html">LDR</a>:
+        Load vector to ZA array.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mov_mova_z_p_rza.html">MOV (tile to vector)</a>:
+        Move ZA tile slice to vector register: an alias of MOVA (tile to vector).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mov_mova_za_p_rz.html">MOV (vector to tile)</a>:
+        Move vector register to ZA tile slice: an alias of MOVA (vector to tile).</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mova_z_p_rza.html">MOVA (tile to vector)</a>:
+        Move ZA tile slice to vector register.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="mova_za_p_rz.html">MOVA (vector to tile)</a>:
+        Move vector register to ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="smopa_za_pp_zz.html">SMOPA</a>:
+        Signed integer sum of outer products and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="smops_za_pp_zz.html">SMOPS</a>:
+        Signed integer sum of outer products and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="st1b_za_p_rrr.html">ST1B</a>:
+        Contiguous store of bytes from 8-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="st1d_za_p_rrr.html">ST1D</a>:
+        Contiguous store of doublewords from 64-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="st1h_za_p_rrr.html">ST1H</a>:
+        Contiguous store of halfwords from 16-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="st1q_za_p_rrr.html">ST1Q</a>:
+        Contiguous store of quadwords from 128-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="st1w_za_p_rrr.html">ST1W</a>:
+        Contiguous store of words from 32-bit element ZA tile slice.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="str_za_ri.html">STR</a>:
+        Store vector from ZA array.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="sumopa_za_pp_zz.html">SUMOPA</a>:
+        Signed by unsigned integer sum of outer products and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="sumops_za_pp_zz.html">SUMOPS</a>:
+        Signed by unsigned integer sum of outer products and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="umopa_za_pp_zz.html">UMOPA</a>:
+        Unsigned integer sum of outer products and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="umops_za_pp_zz.html">UMOPS</a>:
+        Unsigned integer sum of outer products and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="usmopa_za_pp_zz.html">USMOPA</a>:
+        Unsigned by signed integer sum of outer products and accumulate.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="usmops_za_pp_zz.html">USMOPS</a>:
+        Unsigned by signed integer sum of outer products and subtract.</span></p></div>
+    <div class="iformindex"><p class="iformindex"><span class="insnheading"><a href="zero_za_i.html">ZERO</a>:
+        Zero a list of 64-bit element ZA tiles.</span></p></div>
+  <hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+        Internal version only: isa v33.11seprel, AdvSIMD v29.05, pseudocode v2021-09_rel, sve v2021-09_rc3d      
+        ; Build timestamp: 2021-10-06T11:41
+    </p><p class="copyconf">
+      Copyright © 2010-2021 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p></body>
+</html>

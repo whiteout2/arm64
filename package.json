@@ -49,23 +49,23 @@
             "package-explorer": [
                 {
                     "id": "nodeDependencies1",
-                    "name": "A Instructions"
+                    "name": "Base Instructions"
                 },
                 {
                     "id": "nodeDependencies2",
-                    "name": "B Instructions"
+                    "name": "SIMD&FP Instructions"
                 },
                 {
                     "id": "nodeDependencies3",
-                    "name": "C Instructions"
+                    "name": "SVE Instructions"
                 },
                 {
                     "id": "nodeDependencies4",
-                    "name": "D Instructions"
+                    "name": "SME Instructions"
                 },
                 {
                     "id": "nodeDependencies5",
-                    "name": "E Instructions"
+                    "name": "X Instructions"
                 }
             ],
             "explorer": [
