@@ -153,7 +153,15 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" style="text-align: center; width: 95%;" border=1 cellspacing=0>');
 				body3 = body3.replace(/<p class="pseudocode">/g, '<p class="pseudocode" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
 				body3 = body3.replace(/<p class="asm-code">/g, '<p class="asm-code" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
+				// nasties
 				body3 = body3.replace('<a id="execute"/>', '');
+				body3 = body3.replace('<a id="iclass_general"/>', '');
+				body3 = body3.replace('<a id="iclass_system"/>', '');
+				body3 = body3.replace('<a id="XPACD_64Z_dp_1src"/>', '');
+				body3 = body3.replace('<a id="XPACI_64Z_dp_1src"/>', '');
+				body3 = body3.replace('<a id="XPACLRI_HI_hints"/>', '');
+				//body3 = body3.replace('<a id="sa_xd"/>', '');
+				
 				// cut header
 				body3 = body3.replace('<body>', '<body><!--');
 				body3 = body3.replace('</table><hr/>', '</table><hr/>-->');
