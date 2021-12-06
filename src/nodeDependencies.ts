@@ -305,7 +305,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 						found_td = true;
 					}
 					if (name === "a" && found_td) {
-						console.log("link: ", attribs.href);
+						console.log("link:", attribs.href);
 						link = attribs.href;
 						//link = link.slice(2, link.length);
 					}

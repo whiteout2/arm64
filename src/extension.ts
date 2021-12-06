@@ -160,7 +160,21 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<a id="XPACD_64Z_dp_1src"/>', '');
 				body3 = body3.replace('<a id="XPACI_64Z_dp_1src"/>', '');
 				body3 = body3.replace('<a id="XPACLRI_HI_hints"/>', '');
-				//body3 = body3.replace('<a id="sa_xd"/>', '');
+
+				
+				body3 = body3.replace('<a id="sa_r"/>', '');
+				body3 = body3.replace('<a id="sa_m"/>', '');
+				body3 = body3.replace('<a id="sa_amount"/>', '');
+				body3 = body3.replace('<a id="sa_extend"/>', '');
+				body3 = body3.replace('<a id="sa_extend_1"/>', '');
+
+				
+				//body3 = body3.replace(/<col class="asyn-r"\/><tr><td>/g, '<col class="asyn-r"/><tr><td style="vertical-align: baseline;">');
+				body3 = body3.replace(/<td>/g, '<td style="vertical-align: baseline;">');
+
+				body3 = body3.replace(/<td class="bitfield">/g, '<td class="bitfield" style="text-align: center; font-family: courier, monospace;">');
+				body3 = body3.replace(/<td class="symbol">/g, '<td class="symbol" style="text-align: center; font-family: courier, monospace;">');
+				
 				
 				// cut header
 				body3 = body3.replace('<body>', '<body><!--');
