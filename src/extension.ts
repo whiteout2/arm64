@@ -2,6 +2,7 @@
 
 import * as vscode from 'vscode';
 import * as fs from 'fs';
+import * as path from 'path';
 
 import { DepNodeProvider } from './nodeDependencies'
 import { JsonOutlineProvider } from './jsonOutline'
@@ -125,6 +126,7 @@ function viewInstruction(moduleName, moduleLink)
 				vscode.ViewColumn.One,
 				{
 					// Only allow the webview to access resources in our extension's media directory
+					// Not necessary
 					//localResourceRoots: [vscode.Uri.file(myExtDir + '/arm/xhtml_a64')]
 				}
 			);
@@ -141,6 +143,7 @@ function viewInstruction(moduleName, moduleLink)
 			// <a id="execute"/> => 
 			// And also hack off page headers and footers
 			// NOTE: inline css works
+			// TODO: use the original style sheet.
 			var body3 = '';
 			//fs.readFile(myExtDir + '/arm/xhtml_a64/adc.html', 'utf8', function(err, data) {
 			fs.readFile(myExtDir + '/arm/xhtml_a64/' + moduleLink, 'utf8', function(err, data) {
@@ -149,11 +152,31 @@ function viewInstruction(moduleName, moduleLink)
 				// It is the callback shit again.
 				body3 = data;
 				
-				// HACK:
-				body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" style="text-align: center; width: 95%;" border=1 cellspacing=0>');
-				body3 = body3.replace(/<p class="pseudocode">/g, '<p class="pseudocode" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
-				body3 = body3.replace(/<p class="asm-code">/g, '<p class="asm-code" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
-				// nasties
+				
+				// TEST: load stylesheet
+				// HELL: no go, css is not loaded
+				// YESS: we need styleSrc.toString() NOT {{styleSrc}}
+				// See: https://stackoverflow.com/questions/62104512/cant-apply-styles-to-vscode-webview-using-html-file
+				//const styleSrc = vscode.Uri.file(myExtDir + '/arm/xhtml_a64/insn.css').with({ scheme: 'vscode-resource' })
+				//const styleSrc = vscode.Uri.file(path.join(vscode.context.extensionPath, '/path/to/dir/of/theme.css')).with({ scheme: 'vscode-resource' })
+
+				//const onDiskPath = vscode.Uri.file('/Users/rg/Documents/comp/whiteout2/arm/arm/xhtml_a64/insn.css')
+				const onDiskPath = vscode.Uri.file(myExtDir + '/arm/xhtml_a64/insn_hacked.css')
+				const styleSrc = panel.webview.asWebviewUri(onDiskPath)
+				console.log(styleSrc)
+				// insn.css
+				body3 = body3.replace('insn.css', styleSrc.toString());
+				console.log(body3)				
+				//body3 = body3.replace('<head>', '<head><meta http-equiv="Content-Security-Policy" content="default-src none; img-src vscode-resource: https:; script-src vscode-resource:; style-src vscode-resource:;">');
+				
+
+
+				
+				// // HACK:
+				// body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" style="text-align: center; width: 95%;" border=1 cellspacing=0>');
+				// body3 = body3.replace(/<p class="pseudocode">/g, '<p class="pseudocode" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
+				// body3 = body3.replace(/<p class="asm-code">/g, '<p class="asm-code" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
+				// // nasties
 				body3 = body3.replace('<a id="execute"/>', '');
 				body3 = body3.replace('<a id="iclass_general"/>', '');
 				body3 = body3.replace('<a id="iclass_system"/>', '');
@@ -167,14 +190,17 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<a id="sa_amount"/>', '');
 				body3 = body3.replace('<a id="sa_extend"/>', '');
 				body3 = body3.replace('<a id="sa_extend_1"/>', '');
+				body3 = body3.replace('<a id="sa_shift"/>', '');
+				
 
 				
-				//body3 = body3.replace(/<col class="asyn-r"\/><tr><td>/g, '<col class="asyn-r"/><tr><td style="vertical-align: baseline;">');
-				body3 = body3.replace(/<td>/g, '<td style="vertical-align: baseline;">');
+				// // td vertical align text
+				// body3 = body3.replace(/<td>/g, '<td style="vertical-align: baseline;">');
 
-				body3 = body3.replace(/<td class="bitfield">/g, '<td class="bitfield" style="text-align: center; font-family: courier, monospace;">');
-				body3 = body3.replace(/<td class="symbol">/g, '<td class="symbol" style="text-align: center; font-family: courier, monospace;">');
+				// body3 = body3.replace(/<td class="bitfield">/g, '<td class="bitfield" style="text-align: center; font-family: courier, monospace;">');
+				// body3 = body3.replace(/<td class="symbol">/g, '<td class="symbol" style="text-align: center; font-family: courier, monospace;">');
 				
+			
 				
 				// cut header
 				body3 = body3.replace('<body>', '<body><!--');
