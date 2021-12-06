@@ -150,7 +150,7 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = data;
 				
 				// HACK:
-				body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" border=1 cellspacing=0>');
+				body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" style="text-align: center; width: 95%;" border=1 cellspacing=0>');
 				body3 = body3.replace(/<p class="pseudocode">/g, '<p class="pseudocode" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
 				body3 = body3.replace(/<p class="asm-code">/g, '<p class="asm-code" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
 				body3 = body3.replace('<a id="execute"/>', '');
