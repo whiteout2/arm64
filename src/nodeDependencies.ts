@@ -277,6 +277,94 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 
 			}
 		}); // End: request.get()
+
+
+		/////////////////////////////////
+		// TEST: Arm
+		// NOTE: When debugging, readFile stuff will show up earlier than the request stuff. Both functions
+		// use an anonymous callback for asynchronous access and reading a local file is much faster
+		// than fetching a web file. This also causes our deps to list the ARM instructions first.
+		// Of course we will disable the x86 later.
+		found_td = false;
+		column = 1;
+		var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
+
+		fs.readFile(myExtDir + '/arm/xhtml_a64/index.html', 'utf8', function(err, data) {
+			if (err) throw err;
+			// DAMN: cannot use a variable like this: if we leave the scope body3 will be empty
+			// It is the callback shit again.
+			var html = data;
+
+			// Parse html file
+			// NOTE: fucks up with: (1)</td>
+			var htmlparser = require("htmlparser2");
+			var parser = new htmlparser.Parser({
+				onopentag: function (name, attribs) {
+					if (name === "span") {  // && attribs.type === "text/javascript") {
+						//console.log("TD! Hooray!");
+						found_td = true;
+					}
+					if (name === "a" && found_td) {
+						console.log("link: ", attribs.href);
+						link = attribs.href;
+						//link = link.slice(2, link.length);
+					}
+					//if (name === "table") {
+					//	table++;;
+					//}
+				},
+				ontext: function (text) {
+					//console.log("-->", text);
+					if (found_td && column == 1) {
+						//console.log("-->", text);
+						mnemonic = text;
+						column = 2;
+					} else
+					if (found_td && column == 2) {
+						//console.log("-->", text);
+						{
+							summary = text;
+							//summary = summary.replace('\n', '');
+							summary = summary.slice(10, summary.length);
+							column = 1;							
+
+							// Add found mnemonic-summary to array
+							// HELL: The array gets never filled
+							// It's like all variables are deleted once we go out of request.get() scope
+							// NONO: It gets filled OK. You can see it in Debug with a breakpoint on deps.push()
+							// It is just that we lose all variables once we go out of scope
+							var dep = new Dependency(mnemonic, summary, vscode.TreeItemCollapsibleState.None, {
+								command: 'extension.openPackageOnNpm',
+								title: '',
+								arguments: [mnemonic, link]
+							});
+
+							deps.push(dep);
+						}
+					}
+				},
+				onclosetag: function (tagname) {
+					if (tagname === "span") {
+						//console.log("That's it?!");
+						found_td = false;
+					}
+				}
+			}, { decodeEntities: true });
+			parser.write(html);
+			parser.end();
+			
+			// End parse
+			console.log("Parse ARM end.");
+
+			// Trigger a refresh of the 5 views
+			vscode.commands.executeCommand('nodeDependencies1.refreshEntry');
+			vscode.commands.executeCommand('nodeDependencies2.refreshEntry');
+			vscode.commands.executeCommand('nodeDependencies3.refreshEntry');
+			vscode.commands.executeCommand('nodeDependencies4.refreshEntry');
+			vscode.commands.executeCommand('nodeDependencies5.refreshEntry');
+
+		}); // End: fs.readFile()
+		/////////////////////////////////
 	}
 
 	private getIndex(mnemonic: string): number {

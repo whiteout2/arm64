@@ -88,7 +88,7 @@ function viewInstruction(moduleName, moduleLink)
 	// - Get rid of hardcoded /Users/RG/Documents/comp/whiteout2/tree-view-sample-x86/
 	
 	var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
-					
+/* 					
 	var request = require('request');
 	request.get(`https://www.felixcloutier.com/x86/${moduleLink}`, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
@@ -115,7 +115,7 @@ function viewInstruction(moduleName, moduleLink)
 				fs.mkdirSync(myExtDir + `/arm`);
 			}
 			fs.writeFileSync(myExtDir + `/arm/${cleanFileName}`, body);
-
+*/	
 			// TODO: previewHtml is deprecated, use Webview API
 			//vscode.commands.executeCommand('vscode.previewHtml', vscode.Uri.parse(`file://` + myExtDir + `/x86/${moduleLink}`), 1, `${moduleName}`);
 			// Create and show panel
@@ -125,14 +125,14 @@ function viewInstruction(moduleName, moduleLink)
 				vscode.ViewColumn.One,
 				{
 					// Only allow the webview to access resources in our extension's media directory
-					localResourceRoots: [vscode.Uri.file(myExtDir + '/arm/xhtml_a64')]
+					//localResourceRoots: [vscode.Uri.file(myExtDir + '/arm/xhtml_a64')]
 				}
 			);
 
 			// And set its HTML content
-			panel.webview.html = body;
-			
-			// TEST: show html file in webview
+			//panel.webview.html = body;
+ 		
+			// TEST: Arm show html file in webview
 			// TODO: make css work. Not easy. See: https://stackoverflow.com/questions/56182144/vscode-extension-webview-external-html-and-css
 			// Since webview adapts the contents for the color themes better not use css but just change
 			// some html before showing:
@@ -142,7 +142,8 @@ function viewInstruction(moduleName, moduleLink)
 			// And also hack off page headers and footers
 			// NOTE: inline css works
 			var body3 = '';
-			fs.readFile(myExtDir + '/arm/xhtml_a64/adc.html', 'utf8', function(err, data) {
+			//fs.readFile(myExtDir + '/arm/xhtml_a64/adc.html', 'utf8', function(err, data) {
+			fs.readFile(myExtDir + '/arm/xhtml_a64/' + moduleLink, 'utf8', function(err, data) {
 				if (err) throw err;
 				// DAMN: cannot use a variable like this: if we leave the scope body3 will be empty
 				// It is the callback shit again.
@@ -172,6 +173,6 @@ function viewInstruction(moduleName, moduleLink)
 			
 
 		}
-	}); // End: request.get()
+//	}); // End: request.get()
 
 }
