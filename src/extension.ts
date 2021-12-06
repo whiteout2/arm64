@@ -132,7 +132,7 @@ function viewInstruction(moduleName, moduleLink)
 			// And set its HTML content
 			//panel.webview.html = body;
  		
-			// TEST: Arm show html file in webview
+			// TEST: ARM show html file in webview
 			// TODO: make css work. Not easy. See: https://stackoverflow.com/questions/56182144/vscode-extension-webview-external-html-and-css
 			// Since webview adapts the contents for the color themes better not use css but just change
 			// some html before showing:

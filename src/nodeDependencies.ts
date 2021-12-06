@@ -275,16 +275,16 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 				vscode.commands.executeCommand('nodeDependencies4.refreshEntry');
 				vscode.commands.executeCommand('nodeDependencies5.refreshEntry');
 
-			}
+			} // End: if (!error
 		}); // End: request.get()
  */
 
 		/////////////////////////////////
-		// TEST: Arm
+		// TEST: ARM
 		// NOTE: When debugging, readFile stuff will show up earlier than the request stuff. Both functions
 		// use an anonymous callback for asynchronous access and reading a local file is much faster
 		// than fetching a web file. This also causes our deps to list the ARM instructions first.
-		// Of course we will disable the x86 later.
+		// Of course we will disable the x86 stuff later.
 		found_td = false;
 		column = 1;
 		var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
