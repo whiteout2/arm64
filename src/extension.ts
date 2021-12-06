@@ -171,8 +171,8 @@ function viewInstruction(moduleName, moduleLink)
 			//console.log(body3);
 			//panel.webview.html = body3;
 			
-
-		}
-//	}); // End: request.get()
-
+/* 
+		} // End: if (!error
+	}); // End: request.get()
+ */
 }

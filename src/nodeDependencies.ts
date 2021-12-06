@@ -155,7 +155,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 		var column = 1;
 		//var table = 0;
 		
-		
+/* 		
 		// Read html file
 		//fs.readFileSync('https://www.felixcloutier.com/x86/index.html', 'utf-8')
 		//request('http://google.com/doodle.png').pipe(fs.createWriteStream('doodle.png'))
@@ -277,7 +277,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 
 			}
 		}); // End: request.get()
-
+ */
 
 		/////////////////////////////////
 		// TEST: Arm
