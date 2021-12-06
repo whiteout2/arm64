@@ -90,12 +90,17 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 		// Should let html parser fill different arrays for each view/table but that code is 
 		// complex enough as it is. We'll just index into the total array here.
 		switch (this.view) {
-			case 1: return deps.slice(0, this.getIndex('XTEST')+1);
-			//case 2: return deps.slice(this.getIndex('EACCEPT'), this.getIndex('EWB')+1);
-			case 2: return deps.slice(this.getIndex('ENCLS'), this.getIndex('ENCLV[ESETCONTEXT]')+1);
-			case 3: return deps.slice(this.getIndex('GETSEC[CAPABILITIES]'), this.getIndex('GETSEC[WAKEUP]')+1);
-			case 4: return deps.slice(this.getIndex('INVEPT'), this.getIndex('VMXON')+1);
-			case 5: return deps.slice(this.getIndex('PREFETCHWT1'), this.getIndex('VSCATTERPF1QPS')+1);
+			// case 1: return deps.slice(0, this.getIndex('XTEST')+1);
+			// //case 2: return deps.slice(this.getIndex('EACCEPT'), this.getIndex('EWB')+1);
+			// case 2: return deps.slice(this.getIndex('ENCLS'), this.getIndex('ENCLV[ESETCONTEXT]')+1);
+			// case 3: return deps.slice(this.getIndex('GETSEC[CAPABILITIES]'), this.getIndex('GETSEC[WAKEUP]')+1);
+			// case 4: return deps.slice(this.getIndex('INVEPT'), this.getIndex('VMXON')+1);
+			// case 5: return deps.slice(this.getIndex('PREFETCHWT1'), this.getIndex('VSCATTERPF1QPS')+1);
+			case 1: return deps.slice(0, this.getIndex('YIELD')+1);
+			case 2: return deps.slice(this.getIndex('ABS'), this.getIndex('ZIP2')+1);
+			case 3: return deps.slice(this.getIndex('ADCLB')-1, this.getIndex('ZIP1, ZIP2 (vectors)')+1);
+			case 4: return deps.slice(this.getIndex('ADDHA'), this.getIndex('ZERO')+1);
+		
 		}
 
 
@@ -141,7 +146,8 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 		return true;
 	}
 
-	public parseHTMLFile() {
+	//public parseHTMLFile() {
+	public parseHTMLFile(filename: string) {	
 		// Now lets make a list by filling an Array
 		// We can then parse a file with mnemonics and create the array of list items
 
@@ -289,7 +295,8 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 		column = 1;
 		var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
 
-		fs.readFile(myExtDir + '/arm/xhtml_a64/index.html', 'utf8', function(err, data) {
+		//fs.readFile(myExtDir + '/arm/xhtml_a64/index.html', 'utf8', function(err, data) {
+		fs.readFile(myExtDir + '/arm/xhtml_a64/' + filename, 'utf8', function(err, data) {
 			if (err) throw err;
 			// DAMN: cannot use a variable like this: if we leave the scope body3 will be empty
 			// It is the callback shit again.

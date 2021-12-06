@@ -12,7 +12,11 @@ export function activate(context: vscode.ExtensionContext) {
 	const rootPath = vscode.workspace.rootPath;
 
 	const foo = new DepNodeProvider(rootPath, 0);
-	foo.parseHTMLFile();
+	//foo.parseHTMLFile();
+	foo.parseHTMLFile('index.html');
+	foo.parseHTMLFile('fpsimdindex.html');
+	foo.parseHTMLFile('sveindex.html');
+	foo.parseHTMLFile('mortlachindex.html');
 
 	//const nodeDependenciesProvider = new DepNodeProvider(rootPath);
 	const nodeDependenciesProvider1 = new DepNodeProvider(rootPath, 1);
@@ -176,7 +180,9 @@ function viewInstruction(moduleName, moduleLink)
 				// body3 = body3.replace('<table class="regdiagram">', '<table class="regdiagram" style="text-align: center; width: 95%;" border=1 cellspacing=0>');
 				// body3 = body3.replace(/<p class="pseudocode">/g, '<p class="pseudocode" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
 				// body3 = body3.replace(/<p class="asm-code">/g, '<p class="asm-code" style="white-space: pre; font-family: courier, monospace; background-color: #FF0000;">');
-				// // nasties
+				
+				// nasties
+				// TODO: use regex to catch em all
 				body3 = body3.replace('<a id="execute"/>', '');
 				body3 = body3.replace('<a id="iclass_general"/>', '');
 				body3 = body3.replace('<a id="iclass_system"/>', '');
@@ -191,6 +197,8 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<a id="sa_extend"/>', '');
 				body3 = body3.replace('<a id="sa_extend_1"/>', '');
 				body3 = body3.replace('<a id="sa_shift"/>', '');
+				body3 = body3.replace('<a id="sa_at_op"/>', '');
+				
 				
 
 				

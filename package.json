@@ -40,7 +40,7 @@
             "activitybar": [
                 {
                     "id": "package-explorer",
-                    "title": "ARM Instructions",
+                    "title": "A64 Instructions",
                     "icon": "media/dep.png"
                 }
             ]
