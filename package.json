@@ -1,8 +1,8 @@
 {
-    "name": "arm",
+    "name": "arm64",
     "displayName": "ARM A64 Instruction Reference",
     "description": "ARM A64 instruction reference in a VS Code custom Activity Bar view",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "whiteout2",
     "engines": {
         "vscode": "^1.32.0"
@@ -329,6 +329,8 @@
         "jsftp": "^2.0.0",
         "jsonc-parser": "^0.4.2",
         "request": "^2.86.0",
-        "cryptiles": ">=4.1.2"
+        "cryptiles": ">=4.1.2",
+        "json-schema": ">=0.4.0",
+        "extend": ">=3.0.2"
     }
 }
