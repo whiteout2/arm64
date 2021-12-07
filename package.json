@@ -62,10 +62,6 @@
                 {
                     "id": "nodeDependencies4",
                     "name": "SME Instructions"
-                },
-                {
-                    "id": "nodeDependencies5",
-                    "name": "X Instructions"
                 }
             ],
             "explorer": [

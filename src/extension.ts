@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const nodeDependenciesProvider2 = new DepNodeProvider(rootPath, 2);
 	const nodeDependenciesProvider3 = new DepNodeProvider(rootPath, 3);
 	const nodeDependenciesProvider4 = new DepNodeProvider(rootPath, 4);
-	const nodeDependenciesProvider5 = new DepNodeProvider(rootPath, 5);
+	//const nodeDependenciesProvider5 = new DepNodeProvider(rootPath, 5);
 	const jsonOutlineProvider = new JsonOutlineProvider(context);
 
 	//vscode.window.registerTreeDataProvider('nodeDependencies', nodeDependenciesProvider);
@@ -31,28 +31,28 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider('nodeDependencies2', nodeDependenciesProvider2);
 	vscode.window.registerTreeDataProvider('nodeDependencies3', nodeDependenciesProvider3);
 	vscode.window.registerTreeDataProvider('nodeDependencies4', nodeDependenciesProvider4);
-	vscode.window.registerTreeDataProvider('nodeDependencies5', nodeDependenciesProvider5);
+	//vscode.window.registerTreeDataProvider('nodeDependencies5', nodeDependenciesProvider5);
 	
 	//vscode.commands.registerCommand('nodeDependencies.refreshEntry', () => nodeDependenciesProvider.refresh());
 	vscode.commands.registerCommand('nodeDependencies1.refreshEntry', () => nodeDependenciesProvider1.refresh());
 	vscode.commands.registerCommand('nodeDependencies2.refreshEntry', () => nodeDependenciesProvider2.refresh());
 	vscode.commands.registerCommand('nodeDependencies3.refreshEntry', () => nodeDependenciesProvider3.refresh());
 	vscode.commands.registerCommand('nodeDependencies4.refreshEntry', () => nodeDependenciesProvider4.refresh());
-	vscode.commands.registerCommand('nodeDependencies5.refreshEntry', () => nodeDependenciesProvider5.refresh());
+	//vscode.commands.registerCommand('nodeDependencies5.refreshEntry', () => nodeDependenciesProvider5.refresh());
 
 
 	vscode.commands.registerCommand('nodeDependencies1.addEntry', node => vscode.window.showInformationMessage('Successfully called add entry'));
 	vscode.commands.registerCommand('nodeDependencies2.addEntry', node => vscode.window.showInformationMessage('Successfully called add entry'));
 	vscode.commands.registerCommand('nodeDependencies3.addEntry', node => vscode.window.showInformationMessage('Successfully called add entry'));
 	vscode.commands.registerCommand('nodeDependencies4.addEntry', node => vscode.window.showInformationMessage('Successfully called add entry'));
-	vscode.commands.registerCommand('nodeDependencies5.addEntry', node => vscode.window.showInformationMessage('Successfully called add entry'));
+	//vscode.commands.registerCommand('nodeDependencies5.addEntry', node => vscode.window.showInformationMessage('Successfully called add entry'));
 
 
 	vscode.commands.registerCommand('nodeDependencies1.deleteEntry', node => vscode.window.showInformationMessage('Successfully called delete entry'));
 	vscode.commands.registerCommand('nodeDependencies2.deleteEntry', node => vscode.window.showInformationMessage('Successfully called delete entry'));
 	vscode.commands.registerCommand('nodeDependencies3.deleteEntry', node => vscode.window.showInformationMessage('Successfully called delete entry'));
 	vscode.commands.registerCommand('nodeDependencies4.deleteEntry', node => vscode.window.showInformationMessage('Successfully called delete entry'));
-	vscode.commands.registerCommand('nodeDependencies5.deleteEntry', node => vscode.window.showInformationMessage('Successfully called delete entry'));
+	//vscode.commands.registerCommand('nodeDependencies5.deleteEntry', node => vscode.window.showInformationMessage('Successfully called delete entry'));
 
 
 	// This opens mnemonic documentation in a browser
@@ -183,7 +183,10 @@ function viewInstruction(moduleName, moduleLink)
 				
 				// nasties
 				// TODO: use regex to catch em all
-				/*body3 = body3.replace('<a id="execute"/>', '');
+				// DONE: makes coloring more consistent (but also more black alas)
+				body3 = body3.replace(/<a id=\"\w+\"\/>/g, '');
+				/*
+				body3 = body3.replace('<a id="execute"/>', '');
 				body3 = body3.replace('<a id="iclass_general"/>', '');
 				body3 = body3.replace('<a id="iclass_system"/>', '');
 				body3 = body3.replace('<a id="XPACD_64Z_dp_1src"/>', '');
@@ -200,7 +203,8 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<a id="sa_at_op"/>', '');
 				body3 = body3.replace('<a id="sa_v"/>', '');
 				body3 = body3.replace('<a id="sa_t"/>', '');
-				body3 = body3.replace('<a id="sa_tb"/>', '');*/
+				body3 = body3.replace('<a id="sa_tb"/>', '');
+				*/
 				
 				
 				
