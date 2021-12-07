@@ -1,7 +1,7 @@
 {
     "name": "arm",
-    "displayName": "ARM Instruction Reference",
-    "description": "ARM instruction reference in a VS Code custom Activity Bar view",
+    "displayName": "ARM A64 Instruction Reference",
+    "description": "ARM A64 instruction reference in a VS Code custom Activity Bar view",
     "version": "0.0.1",
     "publisher": "whiteout2",
     "engines": {
