@@ -7,7 +7,7 @@
 <br>
 
 
-![Image of arm extension](https://raw.githubusercontent.com/whiteout2/arm/master/media/arm_screenshot2.png)
+![Image of arm extension](https://raw.githubusercontent.com/whiteout2/arm/main/media/arm_screenshot2.png?token=AJK64II64UYI7TJVCC7MXWLBV6AAE)
 
 
 <!-- # Custom tree view samples
