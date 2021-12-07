@@ -1,13 +1,13 @@
 # ARM A64 Instruction Reference
 
 - shows ARM A64 instructions in side bar
-- custom activity bar icon [arm] and keybinding (shift+cmd+i)
+- custom activity bar icon [arm64] and keybinding (shift+cmd+i)
 - based on tree-view-sample
 - parses and references the ARM xhtml docs
 <br>
 
 
-![Image of arm extension](https://raw.githubusercontent.com/whiteout2/arm/main/media/arm_screenshot2.png?token=AJK64II64UYI7TJVCC7MXWLBV6AAE)
+![Image of arm extension](https://raw.githubusercontent.com/whiteout2/arm64/main/media/arm_screenshot2.png?token=AJK64II64UYI7TJVCC7MXWLBV6AAE)
 
 
 <!-- # Custom tree view samples
