@@ -198,6 +198,9 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<a id="sa_extend_1"/>', '');
 				body3 = body3.replace('<a id="sa_shift"/>', '');
 				body3 = body3.replace('<a id="sa_at_op"/>', '');
+				body3 = body3.replace('<a id="sa_v"/>', '');
+				body3 = body3.replace('<a id="sa_t"/>', '');
+				
 				
 				
 

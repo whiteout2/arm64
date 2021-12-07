@@ -97,7 +97,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 			// case 4: return deps.slice(this.getIndex('INVEPT'), this.getIndex('VMXON')+1);
 			// case 5: return deps.slice(this.getIndex('PREFETCHWT1'), this.getIndex('VSCATTERPF1QPS')+1);
 			case 1: return deps.slice(0, this.getIndex('YIELD')+1);
-			case 2: return deps.slice(this.getIndex('ABS'), this.getIndex('ZIP2')+1);
+			case 2: return deps.slice(this.getIndex('ADD (vector)')-1, this.getIndex('ZIP2')+1);
 			case 3: return deps.slice(this.getIndex('ADCLB')-1, this.getIndex('ZIP1, ZIP2 (vectors)')+1);
 			case 4: return deps.slice(this.getIndex('ADDHA'), this.getIndex('ZERO')+1);
 		
@@ -304,6 +304,12 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 
 			// Parse html file
 			// NOTE: fucks up with: (1)</td>
+			// NOTE: the parser also fucks up when parsing ARM SVE instructions:
+			// it cuts off at &amp; in CLASTA (SIMD&FP scalar) and
+			// it cuts off at &lt; in CMP<cc> (immediate)
+			// TODO: Find a kludge.
+			// NOTE: the parser manual says it can cut off text at any point and you will have
+			// to manually stich the text together. & is such a cut off point.
 			var htmlparser = require("htmlparser2");
 			var parser = new htmlparser.Parser({
 				onopentag: function (name, attribs) {
@@ -312,7 +318,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 						found_td = true;
 					}
 					if (name === "a" && found_td) {
-						console.log("link:", attribs.href);
+						//console.log("link:", attribs.href);
 						link = attribs.href;
 						//link = link.slice(2, link.length);
 					}
@@ -323,37 +329,78 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 				ontext: function (text) {
 					//console.log("-->", text);
 					if (found_td && column == 1) {
-						//console.log("-->", text);
+						//console.log("mnemonic:", text);
+						//if (text.indexOf('CLASTA (SIMD') != -1)
+						//	console.log("-->", text); // text cut off at &amp;
 						mnemonic = text;
 						column = 2;
 					} else
 					if (found_td && column == 2) {
-						//console.log("-->", text);
-						{
+						// stich mnemonic
+						// TEST:
+						//if (mnemonic.indexOf('CLASTA (SIMD') != -1)
+						//	console.log("-->", text);
+						// kludge for (1)</td> and (2)</td>
+						//if (text.indexOf('(1)') != -1 ||
+						//	text.indexOf('(2)') != -1)
+						// kludge for &amp; and &lt;
+						// We never get into this if because text stops before &amp;
+						// The '&' character seems to be the problem: it is not seen as text
+						// Well, it is seen as separate text: need to stich together
+						// YESS: we stich mnemonic together until ':' where the summary starts
+						// TODO: do the same stich for summary
+						if (text.indexOf(':') == -1) {
+							//console.log("-->", text);
+							mnemonic += text;
+						} else {
+							//console.log("summary:", text);
 							summary = text;
-							//summary = summary.replace('\n', '');
+							column = 3;
+							// strip clean
 							summary = summary.slice(10, summary.length);
-							column = 1;							
-
-							// Add found mnemonic-summary to array
-							// HELL: The array gets never filled
-							// It's like all variables are deleted once we go out of request.get() scope
-							// NONO: It gets filled OK. You can see it in Debug with a breakpoint on deps.push()
-							// It is just that we lose all variables once we go out of scope
-							var dep = new Dependency(mnemonic, summary, vscode.TreeItemCollapsibleState.None, {
-								command: 'extension.openPackageOnNpm',
-								title: '',
-								arguments: [mnemonic, link]
-							});
-
-							deps.push(dep);
 						}
+					} else
+					if (found_td && column == 3) {
+						// stich summary
+						// TEST:
+						if (mnemonic.indexOf('CLASTA (SIMD') != -1)
+							console.log("-->", text);
+						//////	
+						// NOTE: Tricky: what if there is no '.'? Or more than one?
+						// TODO: how to test for end of summary?
+						/*if (text.indexOf('.') == -1) {
+							//console.log("-->", text);
+							summary += text;
+						} else {*/
+							summary += text;
+							//summary = summary.replace('\n', '');
+							//summary = summary.slice(10, summary.length);
+							if (mnemonic.indexOf('CLASTA (SIMD') != -1)
+								console.log("summary:", summary);
+													
+
+							
+						//}
 					}
 				},
 				onclosetag: function (tagname) {
 					if (tagname === "span") {
 						//console.log("That's it?!");
 						found_td = false;
+						column = 1;
+
+						// Add found mnemonic-summary to array
+						// HELL: The array gets never filled
+						// It's like all variables are deleted once we go out of request.get() scope
+						// NONO: It gets filled OK. You can see it in Debug with a breakpoint on deps.push()
+						// It is just that we lose all variables once we go out of scope
+						var dep = new Dependency(mnemonic, summary, vscode.TreeItemCollapsibleState.None, {
+							command: 'extension.openPackageOnNpm',
+							title: '',
+							arguments: [mnemonic, link]
+						});
+
+						deps.push(dep);
 					}
 				}
 			}, { decodeEntities: true });
@@ -361,7 +408,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 			parser.end();
 			
 			// End parse
-			console.log("Parse ARM end.");
+			console.log("Parse ARM end:", filename);
 
 			// Trigger a refresh of the 5 views
 			vscode.commands.executeCommand('nodeDependencies1.refreshEntry');
