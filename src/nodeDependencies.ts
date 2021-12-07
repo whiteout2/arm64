@@ -344,7 +344,6 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 						//if (text.indexOf('(1)') != -1 ||
 						//	text.indexOf('(2)') != -1)
 						// kludge for &amp; and &lt;
-						// We never get into this if because text stops before &amp;
 						// The '&' character seems to be the problem: it is not seen as text
 						// Well, it is seen as separate text: need to stich together
 						// YESS: we stich mnemonic together until ':' where the summary starts
@@ -368,6 +367,8 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 						//////	
 						// NOTE: Tricky: what if there is no '.'? Or more than one?
 						// TODO: how to test for end of summary?
+						// DONE: do not test, just keep stiching till close tag sets found_td to false
+						// which will end the stich
 						/*if (text.indexOf('.') == -1) {
 							//console.log("-->", text);
 							summary += text;
@@ -375,11 +376,9 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 							summary += text;
 							//summary = summary.replace('\n', '');
 							//summary = summary.slice(10, summary.length);
+							// TEST:
 							if (mnemonic.indexOf('CLASTA (SIMD') != -1)
-								console.log("summary:", summary);
-													
-
-							
+								console.log("summary:", summary);					
 						//}
 					}
 				},
@@ -400,6 +399,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 							arguments: [mnemonic, link]
 						});
 
+						// And push
 						deps.push(dep);
 					}
 				}
