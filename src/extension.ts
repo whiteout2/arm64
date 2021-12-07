@@ -183,7 +183,7 @@ function viewInstruction(moduleName, moduleLink)
 				
 				// nasties
 				// TODO: use regex to catch em all
-				body3 = body3.replace('<a id="execute"/>', '');
+				/*body3 = body3.replace('<a id="execute"/>', '');
 				body3 = body3.replace('<a id="iclass_general"/>', '');
 				body3 = body3.replace('<a id="iclass_system"/>', '');
 				body3 = body3.replace('<a id="XPACD_64Z_dp_1src"/>', '');
@@ -200,6 +200,7 @@ function viewInstruction(moduleName, moduleLink)
 				body3 = body3.replace('<a id="sa_at_op"/>', '');
 				body3 = body3.replace('<a id="sa_v"/>', '');
 				body3 = body3.replace('<a id="sa_t"/>', '');
+				body3 = body3.replace('<a id="sa_tb"/>', '');*/
 				
 				
 				

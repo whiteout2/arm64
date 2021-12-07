@@ -89,6 +89,10 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 
 		// Should let html parser fill different arrays for each view/table but that code is 
 		// complex enough as it is. We'll just index into the total array here.
+		// NOTE: Now we are calling parseHTML four times and it fills deps asynchronously
+		// the array may get filled in different order. See debug output. So this is tricky.
+		// Better use 4 different deps. But it seems to work. Just make sure not to slice from
+		// index 0 for case 1 because order is not guaranteed.
 		switch (this.view) {
 			// case 1: return deps.slice(0, this.getIndex('XTEST')+1);
 			// //case 2: return deps.slice(this.getIndex('EACCEPT'), this.getIndex('EWB')+1);
@@ -96,7 +100,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 			// case 3: return deps.slice(this.getIndex('GETSEC[CAPABILITIES]'), this.getIndex('GETSEC[WAKEUP]')+1);
 			// case 4: return deps.slice(this.getIndex('INVEPT'), this.getIndex('VMXON')+1);
 			// case 5: return deps.slice(this.getIndex('PREFETCHWT1'), this.getIndex('VSCATTERPF1QPS')+1);
-			case 1: return deps.slice(0, this.getIndex('YIELD')+1);
+			case 1: return deps.slice(this.getIndex('ADC'), this.getIndex('YIELD')+1);
 			case 2: return deps.slice(this.getIndex('ADD (vector)')-1, this.getIndex('ZIP2')+1);
 			case 3: return deps.slice(this.getIndex('ADCLB')-1, this.getIndex('ZIP1, ZIP2 (vectors)')+1);
 			case 4: return deps.slice(this.getIndex('ADDHA'), this.getIndex('ZERO')+1);
