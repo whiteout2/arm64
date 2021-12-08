@@ -351,6 +351,8 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 						// The '&' character seems to be the problem: it is not seen as text
 						// Well, it is seen as separate text: need to stich together
 						// YESS: we stich mnemonic together until ':' where the summary starts
+						// NOTE: it is probably better to stich until </a> but no menemoic uses a ':'
+						// so we can use that, or otherwise use ':  ' as end of mnemonic indicator.
 						// TODO: do the same stich for summary
 						if (text.indexOf(':') == -1) {
 							//console.log("-->", text);
