@@ -159,7 +159,8 @@ export class FtpExplorer {
 	private ftpViewer: TreeView<FtpNode>;
 
 	constructor(context: vscode.ExtensionContext) {
-		const ftpModel = new FtpModel('mirror.switch.ch', 'anonymous', 'anonymous@anonymous.de');
+		//const ftpModel = new FtpModel('mirror.switch.ch', 'anonymous', 'anonymous@anonymous.de');
+		const ftpModel = new FtpModel('ftp.cs.brown.edu', 'anonymous', 'anonymous');
 		const treeDataProvider = new FtpTreeDataProvider(ftpModel);
 		context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider));
 
