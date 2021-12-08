@@ -201,7 +201,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 
 				// TEST: reading html and writing to file for use in previewHtml
 				// OK works!
-				var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
+				var myExtDir = vscode.extensions.getExtension ("whiteout2.arm64").extensionPath;
 				//fs.writeFileSync('/Users/RG/Documents/comp/whiteout2/tree-view-sample-x86/x86/index.html', body);
 				// FUCK: the entire parse fails if we do not have the /arm directory in our
 				// extension. Let's do a check here too.
@@ -297,7 +297,7 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Dependency> {
 		// Of course we will disable the x86 stuff later.
 		found_td = false;
 		column = 1;
-		var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
+		var myExtDir = vscode.extensions.getExtension ("whiteout2.arm64").extensionPath;
 
 		//fs.readFile(myExtDir + '/arm/xhtml_a64/index.html', 'utf8', function(err, data) {
 		fs.readFile(myExtDir + '/arm/xhtml_a64/' + filename, 'utf8', function(err, data) {

@@ -92,7 +92,7 @@ function viewInstruction(moduleName, moduleLink)
 	// - Check if file is already in /x86 cache to skip the download (not really necessary)
 	// - Get rid of hardcoded /Users/RG/Documents/comp/whiteout2/tree-view-sample-x86/
 	
-	var myExtDir = vscode.extensions.getExtension ("whiteout2.arm").extensionPath;
+	var myExtDir = vscode.extensions.getExtension ("whiteout2.arm64").extensionPath;
 /* 					
 	var request = require('request');
 	request.get(`https://www.felixcloutier.com/x86/${moduleLink}`, function (error, response, body) {
